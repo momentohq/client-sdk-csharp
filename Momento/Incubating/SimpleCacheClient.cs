@@ -873,6 +873,80 @@ public class SimpleCacheClient : ISimpleCacheClient
         return await this.dataClient.DictionaryRemoveFieldsAsync(cacheName, dictionaryName, fields);
     }
 
+    public async Task<CacheSetAddResponse> SetAddAsync(string cacheName, string setName, byte[] element, bool refreshTtl, uint? ttlSeconds = null)
+    {
+        Utils.ArgumentNotNull(cacheName, nameof(cacheName));
+        Utils.ArgumentNotNull(setName, nameof(setName));
+        Utils.ArgumentNotNull(element, nameof(element));
+
+        return await this.dataClient.SetAddAsync(cacheName, setName, element, refreshTtl, ttlSeconds);
+    }
+
+    public async Task<CacheSetAddResponse> SetAddAsync(string cacheName, string setName, string element, bool refreshTtl, uint? ttlSeconds = null)
+    {
+        Utils.ArgumentNotNull(cacheName, nameof(cacheName));
+        Utils.ArgumentNotNull(setName, nameof(setName));
+        Utils.ArgumentNotNull(element, nameof(element));
+
+        return await this.dataClient.SetAddAsync(cacheName, setName, element, refreshTtl, ttlSeconds);
+    }
+
+    public async Task<CacheSetAddBatchResponse> SetAddBatchAsync(string cacheName, string setName, bool refreshTtl, uint? ttlSeconds = null, params byte[][] elements)
+    {
+        Utils.ArgumentNotNull(cacheName, nameof(cacheName));
+        Utils.ArgumentNotNull(setName, nameof(setName));
+        Utils.ArgumentNotNull(elements, nameof(elements));
+        Utils.ElementsNotNull(elements, nameof(elements));
+
+        return await this.dataClient.SetAddBatchAsync(cacheName, setName, elements, refreshTtl, ttlSeconds);
+    }
+
+    public async Task<CacheSetAddBatchResponse> SetAddBatchAsync(string cacheName, string setName, bool refreshTtl, uint? ttlSeconds = null, params string[] elements)
+    {
+        Utils.ArgumentNotNull(cacheName, nameof(cacheName));
+        Utils.ArgumentNotNull(setName, nameof(setName));
+        Utils.ArgumentNotNull(elements, nameof(elements));
+        Utils.ElementsNotNull(elements, nameof(elements));
+
+        return await this.dataClient.SetAddBatchAsync(cacheName, setName, elements, refreshTtl, ttlSeconds);
+    }
+
+    public async Task<CacheSetAddBatchResponse> SetAddBatchAsync(string cacheName, string setName, IEnumerable<byte[]> elements, bool refreshTtl, uint? ttlSeconds = null)
+    {
+        Utils.ArgumentNotNull(cacheName, nameof(cacheName));
+        Utils.ArgumentNotNull(setName, nameof(setName));
+        Utils.ArgumentNotNull(elements, nameof(elements));
+        Utils.ElementsNotNull(elements, nameof(elements));
+
+        return await this.dataClient.SetAddBatchAsync(cacheName, setName, elements, refreshTtl, ttlSeconds);
+    }
+
+    public async Task<CacheSetAddBatchResponse> SetAddBatchAsync(string cacheName, string setName, IEnumerable<string> elements, bool refreshTtl, uint? ttlSeconds = null)
+    {
+        Utils.ArgumentNotNull(cacheName, nameof(cacheName));
+        Utils.ArgumentNotNull(setName, nameof(setName));
+        Utils.ArgumentNotNull(elements, nameof(elements));
+        Utils.ElementsNotNull(elements, nameof(elements));
+
+        return await this.dataClient.SetAddBatchAsync(cacheName, setName, elements, refreshTtl, ttlSeconds);
+    }
+
+    public async Task<CacheSetFetchResponse> SetFetchAsync(string cacheName, string setName)
+    {
+        Utils.ArgumentNotNull(cacheName, nameof(cacheName));
+        Utils.ArgumentNotNull(setName, nameof(setName));
+
+        return await this.dataClient.SetFetchAsync(cacheName, setName);
+    }
+
+    public async Task<CacheSetDeleteResponse> SetDeleteAsync(string cacheName, string setName)
+    {
+        Utils.ArgumentNotNull(cacheName, nameof(cacheName));
+        Utils.ArgumentNotNull(setName, nameof(setName));
+
+        return await this.dataClient.SetDeleteAsync(cacheName, setName);
+    }
+
     public void Dispose()
     {
         this.simpleCacheClient.Dispose();
